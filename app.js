@@ -92,36 +92,9 @@ async function getExchangeRates() {
   }
 }
 
-async function getAirQuality(cityName) {
-  try {
-    const response = await fetch(`/airquality?city=${cityName}`)
-    const data = await response.json()
-
-    if (!data) {
-      console.error('Invalid response or missing air quality data')
-      return
-    }
-
-    const airQualityContainer = document.createElement('div')
-    airQualityContainer.classList.add('air-quality-container')
-
-    const airQualityElement = document.createElement('p')
-    airQualityElement.textContent = `Air Quality in ${cityName}: ${data.airQuality}`
-    airQualityContainer.appendChild(airQualityElement)
-
-    const container2Element = document.querySelector('.container2')
-    container2Element.innerHTML = ''
-    container2Element.appendChild(airQualityContainer)
-  } catch (error) {
-    console.error(error)
-  }
-}
 
 window.onload = function () {
   getExchangeRates()
 }
-document.getElementById('getWeatherButton').addEventListener('click', async () => {
-  const cityName = document.getElementById('cityInput').value
-  await getAirQuality(cityName)
-  await getWeather(cityName)
-})
+document.getElementById('getWeatherButton').addEventListener('click', getWeather)
+
