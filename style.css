@@ -3,26 +3,34 @@
 }
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 .header {
-  height: 13%;
   background-color: #252422;
   color: #f18854;
+  padding: 15px 0;
 }
-
+.header_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+}
 .header_text {
   display: flex;
   justify-content: flex-start;
   padding-top: 15px;
-  padding-left: 50px;
 }
-
-.header_text img {
-  width: 65px;
-  margin-right: 15px;
-  filter: invert(100%);
+.header_login {
+  margin-top: 10px;
+}
+.header_login a {
+  text-decoration: none;
+  color: #f18854;
 }
 
 label {
@@ -55,9 +63,10 @@ button {
 }
 
 .main {
-  height: 75%;
+  flex-grow: 1;
   background-color: #3a3938;
   color: white;
+  padding: 20px 0;
 }
 
 .wrapper_main {
@@ -93,6 +102,7 @@ button {
   align-items: center;
   padding-left: 50px;
   font-size: 20px;
+  padding: 15px 50px;
 }
 .footer :first-child {
   color: #f18854;
@@ -124,9 +134,133 @@ button {
   font-size: large;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
     Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .exchange-rates p {
   margin: 5px 0;
   font-size: small;
+}
+
+.sign-form {
+  padding: 20px;
+  background: #383838;
+  border: 1px solid #222222;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  height: 350px;
+  margin-top: 45px;
+  width: 400px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.sign-form h2 {
+  margin-bottom: 10px;
+  color: #f18854;
+}
+
+.sign-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.sign-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.sign-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #00ff3c9a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.sign-form button:hover {
+  background-color: #03b126b5;
+  color: #ebeaea;
+}
+
+.container-signup {
+  display: flex;
+  justify-content: center;
+}
+
+.sign-form a {
+  text-decoration: none;
+  color: #f18854;
+}
+
+.error-message {
+  color: red;
+}
+.wrapper_main span {
+  color: #f18854;
+}
+
+.wrapper_main_admin {
+  margin-right: 150px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-info {
+  display: flex;
+}
+.user-info p {
+  margin-left: 20px;
+  color: rgb(82, 188, 82);
+}
+.user-item {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #fffefe;
+}
+.user-actions {
+  display: flex;
+  padding-top: 15px;
+  margin-left: 20px;
+}
+.user-actions button {
+  width: 70px;
+  height: 25px;
+  margin-right: 15px;
+}
+#userm {
+  margin-left: 20px;
+}
+
+.addus {
+  margin-left: 20px;
+  display: flex;
+}
+.addus form {
+  padding-top: 20px;
+  margin-left: 20px;
+}
+
+.user-info span {
+  color: rgb(255, 255, 255);
 }

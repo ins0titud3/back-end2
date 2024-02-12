@@ -12,7 +12,7 @@ async function getWeather() {
   const cityInput = document.getElementById('cityInput').value
 
   try {
-    const response = await fetch(`http://localhost:3000/weather?city=${cityInput}`)
+    const response = await fetch(`http://localhost:3000/data?city=${cityInput}`)
     const data = await response.json()
 
     const weatherInfoElement = document.getElementById('weather-info')
@@ -70,7 +70,7 @@ async function getExchangeRates() {
     const container2Element = document.querySelector('.container2')
     container2Element.innerHTML = '<h3>Exchange Rates</h3>'
 
-    const targetCurrencies = ['Tenge', 'USD', 'RUB', 'Euro']
+    const targetCurrencies = ['USD', 'RUB']
 
     const exchangeRatesElement = document.createElement('div')
     exchangeRatesElement.classList.add('exchange-rates')
@@ -92,9 +92,36 @@ async function getExchangeRates() {
   }
 }
 
-// Вызовите функцию getExchangeRates после загрузки страницы
+async function getAirQuality(cityName) {
+  try {
+    const response = await fetch(`/airquality?city=${cityName}`)
+    const data = await response.json()
+
+    if (!data) {
+      console.error('Invalid response or missing air quality data')
+      return
+    }
+
+    const airQualityContainer = document.createElement('div')
+    airQualityContainer.classList.add('air-quality-container')
+
+    const airQualityElement = document.createElement('p')
+    airQualityElement.textContent = `Air Quality in ${cityName}: ${data.airQuality}`
+    airQualityContainer.appendChild(airQualityElement)
+
+    const container2Element = document.querySelector('.container2')
+    container2Element.innerHTML = ''
+    container2Element.appendChild(airQualityContainer)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 window.onload = function () {
   getExchangeRates()
 }
-
-document.getElementById('getWeatherButton').addEventListener('click', getWeather)
+document.getElementById('getWeatherButton').addEventListener('click', async () => {
+  const cityName = document.getElementById('cityInput').value
+  await getAirQuality(cityName)
+  await getWeather(cityName)
+})

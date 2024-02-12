@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header_section">
+      <div class="header_text">
+        <h2>Admin Panel</h2>
+      </div>
+      <div class="header_login">
+        <a href="/">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <div class="addus">
+        <h3>Add User:</h3>
+        <form action="/admin/addUser" method="POST">
+          <label for="newUsername">Username:</label>
+          <input type="text" id="newUsername" name="username" required>
+          <label for="newPassword">Password:</label>
+          <input type="password" id="newPassword" name="password" required>
+          <button type="submit">Add User</button>
+        </form>
+      </div>
+      <hr>
+      <h3 id="userm">User Management</h3>
+      <div class="user-list">
+        <% users.forEach(users=> { %>
+          <div class="user-item">
+            <div class="user-info">
+              <p><strong>Username:</strong>
+                <span>
+                  <%= users.username %>
+                </span>
+              </p>
+              <p><strong>Password:</strong>
+                <span>
+                  <%= users.password %>
+                </span>
+              </p>
+            </div>
+            <div class="user-actions">
+              <button
+                onclick="showEditForm('<%= users._id %>', '<%= users.username %>', '<%= users.password %>')">Edit</button>
+
+              <form action="/admin/deleteUser/<%= users._id %>" method="POST">
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+            <div id="editUserForm" style="display: none;">
+              <h3>Edit User</h3>
+              <form action="/admin/editUser" method="POST">
+                <input type="hidden" id="editUserId" name="userId" value="<%= users._id %>">
+
+                <label for="editUsername">Username:</label>
+                <input type="text" id="editUsername" name="username" required>
+                <label for="editPassword">Password:</label>
+                <input type="password" id="editPassword" name="password" required>
+                <button type="submit">Save Changes</button>
+                <button type="button" onclick="cancelEdit()">Cancel</button>
+              </form>
+
+            </div>
+          </div>
+          <% }) %>
+
+      </div>
+
+
+    </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>Your Name</div>
+    <div> - SE-2206 </div>
+  </footer>
+
+  <script src="/admin.js"></script>
+</body>
+
+</html>
